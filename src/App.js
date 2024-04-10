@@ -1,8 +1,15 @@
 import React, { useRef, useEffect } from "react";
-import skyImage from "./images/sky.jpg";
 
 const App = () => {
   const canvasRef = useRef(null);
+  const bgImageRef = useRef(null);
+  const birdImageRef = useRef(null);
+  const upper1ImageRef = useRef(null);
+  const upper2ImageRef = useRef(null);
+  const upper3ImageRef = useRef(null);
+  const lower1ImageRef = useRef(null);
+  const lower2ImageRef = useRef(null);
+  const lower3ImageRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -12,74 +19,56 @@ const App = () => {
     canvas.height = window.innerHeight;
     canvas.style.backgroundColor = "yellow";
 
-    const skyImg = new Image();
-    skyImg.src = skyImage;
+    bgImageRef.current = new Image();
+    bgImageRef.current.onload = function () {
+      ctx.drawImage(bgImageRef.current, 0, 0);
+    };
+    bgImageRef.current.src = "images/background.png";
 
-    skyImg.onload = () => {
-      const scaleWidth = canvas.width / skyImg.width;
-      const scaleHeight = canvas.height / skyImg.height;
-      const scale = Math.max(scaleWidth, scaleHeight);
-      const width = skyImg.width * scale;
-      const height = skyImg.height * scale;
+    birdImageRef.current = new Image();
+    birdImageRef.current.onload = function () {
+      ctx.drawImage(birdImageRef.current, 2, 2);
+    };
+    birdImageRef.current.src = "./images/bird.png";
 
-      const x = (canvas.width - width) / 2;
-      const y = (canvas.height - height) / 2;
-      ctx.drawImage(skyImg, x, y, width, height);
+    upper1ImageRef.current = new Image();
+    upper1ImageRef.current.onload = function () {
+      ctx.drawImage(upper1ImageRef.current, 20, -100);
     };
+    upper1ImageRef.current.src = "./images/upper.png";
 
-    var birdReady = false;
-    var birdImage = new Image();
-    birdImage.onload = function () {
-      birdReady = true;
+    upper2ImageRef.current = new Image();
+    upper2ImageRef.current.onload = function () {
+      ctx.drawImage(upper2ImageRef.current, 75, -50);
     };
-    birdImage.src = "./images/bird.png";
-    //  Upper 1 bar
-    var upper1Ready = false;
-    var upper1Image = new Image();
-    upper1Image.onload = function () {
-      upper1Ready = true;
-    };
-    upper1Image.src = "images/upper.png";
+    upper2ImageRef.current.src = "./images/upper.png";
 
-    var upper2Ready = false;
-    var upper2Image = new Image();
-    upper2Image.onload = function () {
-      upper2Ready = true;
+    upper3ImageRef.current = new Image();
+    upper3ImageRef.current.onload = function () {
+      ctx.drawImage(upper3ImageRef.current, 130, -70);
     };
-    upper2Image.src = "images/upper.png";
-    var upper3Ready = false;
-    var upper3Image = new Image();
-    upper3Image.onload = function () {
-      upper3Ready = true;
-    };
-    upper3Image.src = "images/upper.png";
-    var lower1Ready = false;
-    var lower1Image = new Image();
-    lower1Image.onload = function () {
-      lower1Ready = true;
-    };
-    lower1Image.src = "images/lower.png";
+    upper3ImageRef.current.src = "./images/upper.png";
 
-    var lower2Ready = false;
-    var lower2Image = new Image();
-    lower2Image.onload = function () {
-      lower2Ready = true;
+    lower1ImageRef.current = new Image();
+    lower1ImageRef.current.onload = function () {
+      ctx.drawImage(lower1ImageRef.current, 20, 150);
     };
-    lower2Image.src = "images/lower.png";
+    lower1ImageRef.current.src = "./images/lower.png";
 
-    var lower3Ready = false;
-    var lower3Image = new Image();
-    lower3Image.onload = function () {
-      lower3Ready = true;
+    lower2ImageRef.current = new Image();
+    lower2ImageRef.current.onload = function () {
+      ctx.drawImage(lower2ImageRef.current, 75, 135);
     };
-    lower3Image.src = "images/lower.png";
+    lower2ImageRef.current.src = "./images/lower.png";
+
+    lower3ImageRef.current = new Image();
+    lower3ImageRef.current.onload = function () {
+      ctx.drawImage(lower3ImageRef.current, 130, 160);
+    };
+    lower3ImageRef.current.src = "./images/lower.png";
   }, []);
 
-  return (
-    <div>
-      <canvas ref={canvasRef}></canvas>
-    </div>
-  );
+  return <canvas ref={canvasRef}></canvas>;
 };
 
 export default App;
