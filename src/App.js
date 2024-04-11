@@ -68,7 +68,12 @@ const App = () => {
     lower3ImageRef.current.src = "./images/lower.png";
   }, []);
 
-  return <canvas ref={canvasRef}></canvas>;
+  return (
+    <>
+      <canvas ref={canvasRef}></canvas>
+      <div>Dhanush</div>
+    </>
+  );
 };
 
 export default App;
